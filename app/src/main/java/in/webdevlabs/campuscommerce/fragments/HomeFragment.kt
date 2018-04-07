@@ -26,12 +26,12 @@ class HomeFragment : Fragment() {
         return view
     }
     private fun prepareList(list : ArrayList<Post>){
-        list.add(Post("post1"))
-        list.add(Post("post2"))
-        list.add(Post("post2"))
-        list.add(Post("post2"))
-        list.add(Post("post2"))
-        list.add(Post("post2"))
-        list.add(Post("post2"))
+//        list.add(Post("post1"))
+//        list.add(Post("post2"))
+//        list.add(Post("post2"))
+//        list.add(Post("post2"))
+//        list.add(Post("post2"))
+//        list.add(Post("post2"))
+//        list.add(Post("post2"))
     }
 }

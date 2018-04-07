@@ -3,6 +3,8 @@ package `in`.webdevlabs.campuscommerce.activities
 import `in`.webdevlabs.campuscommerce.R
 import `in`.webdevlabs.campuscommerce.fragments.DevicesFragment
 import `in`.webdevlabs.campuscommerce.fragments.HomeFragment
+import `in`.webdevlabs.campuscommerce.model.Post
+import `in`.webdevlabs.campuscommerce.model.PostType
 import `in`.webdevlabs.campuscommerce.utils.Constants
 import `in`.webdevlabs.campuscommerce.utils.FirebaseUtil
 import android.app.Activity
@@ -189,6 +191,8 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, R.string.sign_in_success, Toast.LENGTH_LONG).show()
                 updateUIAfterSignIn()
                 FirebaseUtil.addCurrentUserToFirebaseDatabase()
+                val post = Post("","s",100,"","123456789",PostType.SELL, listOf("1","1"))
+                FirebaseUtil.addPostToFirebaseDatabase(post)
                 return
             } else {
                 //User pressed back button
