@@ -36,6 +36,9 @@ dependencies {
     implementation "com.google.firebase:firebase-database:${firebaseLibraryVersion}"
     implementation "com.google.firebase:firebase-auth:${firebaseLibraryVersion}"
     implementation "com.firebaseui:firebase-ui-auth:3.1.2"
+    implementation 'com.firebaseui:firebase-ui-database:1.0.1'
+    implementation 'com.firebase:firebase-client-android:2.4.0'
+    implementation 'com.firebaseui:firebase-ui:0.3.1'
 
     implementation "com.google.android.gms:play-services-auth:${firebaseLibraryVersion}"
 

@@ -14,21 +14,64 @@
         card_view:cardElevation="5dp"
         card_view:cardUseCompatPadding="true">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/name_time">
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_margin="5dp"
+                    android:textStyle="bold"
+                    android:text="Name"
+                    android:textAppearance="?android:attr/textAppearanceLarge"/>
+                <TextView
+                    android:id="@+id/time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="5dp"
+                    android:layout_marginRight="10dp"
+                    android:text="Time"
+                    android:textAppearance="?android:attr/textAppearanceLarge"/>
+            </RelativeLayout>
+
             <TextView
-                android:id="@+id/card_title"
+                android:id="@+id/price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp"
-                android:text="Android Name"
+                android:layout_below="@+id/name_time"
+                android:layout_margin="5dp"
+                android:textStyle="italic"
+                android:text="Price"
                 android:textAppearance="?android:attr/textAppearanceLarge"/>
 
-        </LinearLayout>
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="50dp"
+                android:src="@drawable/chat"
+                android:id="@+id/chat"
+                android:layout_below="@+id/price"
+                android:layout_alignParentRight="true"/>
+
+            <TextView
+                android:id="@+id/type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sell"
+                android:layout_below="@+id/price"
+
+                android:layout_margin="5dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+        </RelativeLayout>
 
     </android.support.v7.widget.CardView>
 

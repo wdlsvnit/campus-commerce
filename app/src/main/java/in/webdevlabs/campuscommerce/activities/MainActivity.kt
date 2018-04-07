@@ -191,8 +191,6 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, R.string.sign_in_success, Toast.LENGTH_LONG).show()
                 updateUIAfterSignIn()
                 FirebaseUtil.addCurrentUserToFirebaseDatabase()
-                val post = Post("","s",100,"","123456789",PostType.SELL, listOf("1","1"))
-                FirebaseUtil.addPostToFirebaseDatabase(post)
                 return
             } else {
                 //User pressed back button
