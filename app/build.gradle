@@ -29,7 +29,7 @@ ext {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
     //Firebase lib modules
     implementation "com.google.firebase:firebase-core:${firebaseLibraryVersion}"
