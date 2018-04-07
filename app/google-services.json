@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "450891800393",
+    "firebase_url": "https://the-benders.firebaseio.com",
+    "project_id": "the-benders",
+    "storage_bucket": "the-benders.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:450891800393:android:1e36cbfd33103941",
+        "android_client_info": {
+          "package_name": "in.webdevlabs.campuscommerce"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "450891800393-7dlsu81pfsimggfk6k9104kpspbjmgre.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "in.webdevlabs.campuscommerce",
+            "certificate_hash": "3d58dbe6aaaf06afa8550609de137e9d2acfe697"
+          }
+        },
+        {
+          "client_id": "450891800393-qbkrp3p34cs989ja4dt56akj5e8qq1df.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "in.webdevlabs.campuscommerce",
+            "certificate_hash": "170a292e97c3dc5d3c55cb2b7a3b6f7761a5f4e4"
+          }
+        },
+        {
+          "client_id": "450891800393-19fmv1rjosidag6rpbh5gth8csgbpdin.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDchJqz2tSLcQAT44Q1YzMTU7kVTrP--tw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "450891800393-19fmv1rjosidag6rpbh5gth8csgbpdin.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
