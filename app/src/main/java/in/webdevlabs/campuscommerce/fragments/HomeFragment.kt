@@ -1,8 +1,11 @@
 package `in`.webdevlabs.campuscommerce.fragments
 
 import `in`.webdevlabs.campuscommerce.R
+import `in`.webdevlabs.campuscommerce.activities.NewPostActivity
 import `in`.webdevlabs.campuscommerce.adapters.CustomAdapter
 import `in`.webdevlabs.campuscommerce.model.Post
+import `in`.webdevlabs.campuscommerce.model.PostType
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager

@@ -8,11 +8,8 @@ import `in`.webdevlabs.campuscommerce.model.PostType
 import `in`.webdevlabs.campuscommerce.utils.Constants
 import `in`.webdevlabs.campuscommerce.utils.FirebaseUtil
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
-import android.provider.Settings
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
@@ -57,15 +54,6 @@ class MainActivity : AppCompatActivity() {
         instantiateMenuItems()
         setupProfileDrawer()
         setupNavigationDrawerWithHeader()
-        saveDeviceID()
-    }
-
-    fun saveDeviceID() {
-        androidID = Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
-        val sharedPreference: SharedPreferences = getSharedPreferences(Constants.PREF_NAME, Context.MODE_PRIVATE)
-        val editor = sharedPreference.edit()
-        editor.putString(Constants.DEVICE_PREF, androidID)
-        editor.apply()
     }
 
     private fun setupToolbar() {
