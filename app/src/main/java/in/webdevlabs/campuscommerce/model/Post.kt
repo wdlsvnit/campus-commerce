@@ -1,4 +1,4 @@
-package `in`.webdevlabs.campuscommerce
+package `in`.webdevlabs.campuscommerce.model
 
 /**
  * Created by yolo on 7/4/18.
