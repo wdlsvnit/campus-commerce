@@ -14,6 +14,6 @@ data class Post(
 )
 
 enum class PostType(val type: String) {
-    SELL("sell"),
-    RENT("rent")
+    SELL("SELL"),
+    RENT("RENT")
 }

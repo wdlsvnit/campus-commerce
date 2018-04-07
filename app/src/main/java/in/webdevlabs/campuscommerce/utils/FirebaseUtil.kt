@@ -2,17 +2,9 @@ package `in`.webdevlabs.campuscommerce.utils
 
 import `in`.webdevlabs.campuscommerce.model.Post
 import `in`.webdevlabs.campuscommerce.model.User
-import android.os.Build
-import android.support.annotation.RequiresApi
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import java.text.SimpleDateFormat
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
-import java.util.*
-import kotlin.collections.ArrayList
 
 
 object FirebaseUtil {
@@ -30,7 +22,7 @@ object FirebaseUtil {
 
     fun addPostToFirebaseDatabase(post: Post) {
         val dbref: DatabaseReference = database.getReference("posts").push()
-        val key =  dbref.key
+        val key = dbref.key
         pids.add(key)
         dbref.child("name").setValue(post.name)
         dbref.child("price").setValue(post.price)

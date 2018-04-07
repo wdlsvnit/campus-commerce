@@ -26,21 +26,33 @@
         android:orientation="vertical"
         android:padding="18dp">
 
-        <EditText
-            android:id="@+id/text_title"
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:inputType="text"
-            android:padding="16dp"
-            android:text="Title" />
-
-        <EditText
-            android:id="@+id/text_price"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="number"
-            android:padding="16dp"
-            android:text="0" />
+            android:hint="Title">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/text_title"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="text"
+                android:padding="16dp" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Price">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/text_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:padding="16dp" />
+
+        </android.support.design.widget.TextInputLayout>
 
         <RadioGroup
             android:id="@+id/radioGroup"
@@ -54,7 +66,7 @@
                 android:id="@+id/sellRadioButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checked="false"
+                android:checked="true"
                 android:padding="8dp"
                 android:text="Sell"
                 android:textSize="14dp" />

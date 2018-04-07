@@ -4,7 +4,6 @@ import `in`.webdevlabs.campuscommerce.R
 import `in`.webdevlabs.campuscommerce.activities.NewPostActivity
 import `in`.webdevlabs.campuscommerce.adapters.CustomAdapter
 import `in`.webdevlabs.campuscommerce.model.Post
-import `in`.webdevlabs.campuscommerce.model.PostType
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -41,10 +40,23 @@ class HomeFragment : Fragment() {
 //
 //        }
 
-
-        val rView = view.findViewById(R.id.my_recycler_view) as RecyclerView;
+        val view = inflater.inflate(R.layout.fragment_home, container, false)
         val list = ArrayList<Post>();
-        val adapter = CustomAdapter(activity!!.baseContext,list)
+        prepareList(list);
+        val rView = view.findViewById(R.id.my_recycler_view) as RecyclerView;
+        val adapter = CustomAdapter(activity!!.baseContext, list)
+        rView.adapter = adapter;
+        rView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+        return view
+    }
+    private fun prepareList(list : ArrayList<Post>){
+//        list.add(Post("post1"))
+//        list.add(Post("post2"))
+//        list.add(Post("post2"))
+//        list.add(Post("post2"))
+//        list.add(Post("post2"))
+//        list.add(Post("post2"))
+//        list.add(Post("post2"))
 
         mPostReference.child("posts").addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
