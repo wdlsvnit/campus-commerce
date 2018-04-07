@@ -1,39 +1,48 @@
 package `in`.webdevlabs.campuscommerce.utils
 
 import `in`.webdevlabs.campuscommerce.model.Post
-import `in`.webdevlabs.campuscommerce.model.User
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 
 
 object FirebaseUtil {
 
     private var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     private val database: FirebaseDatabase = FirebaseDatabase.getInstance()
-    private var pids = ArrayList<String>()
+    //private var pids = ArrayList<String>()
 
     fun addCurrentUserToFirebaseDatabase() {
         val databaseRef: DatabaseReference = database.getReference("users")
 
-        val user = User(firebaseAuth.currentUser?.displayName, firebaseAuth.currentUser?.email, pids)
-        databaseRef.child(firebaseAuth.currentUser?.uid).setValue(user)
+        databaseRef.child(firebaseAuth.currentUser?.uid).addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError?) {
+            }
+
+            override fun onDataChange(dataSnapshot: DataSnapshot?) {
+                dataSnapshot?.run {
+                    if (!dataSnapshot.exists()) {
+                        val userRef = databaseRef.child(firebaseAuth.currentUser?.uid)
+                        userRef.child("name").setValue(firebaseAuth.currentUser?.displayName)
+                        userRef.child("email").setValue(firebaseAuth.currentUser?.email)
+                    }
+                }
+            }
+        })
     }
 
     fun addPostToFirebaseDatabase(post: Post) {
-        val dbref: DatabaseReference = database.getReference("posts").push()
-        val key = dbref.key
-        pids.add(key)
-        dbref.child("name").setValue(post.name)
-        dbref.child("price").setValue(post.price)
-        dbref.child("uid").setValue(firebaseAuth.currentUser?.uid)
-//        val cal = Calendar.getInstance(TimeZone.getTimeZone("GMT+1:00"))
-//        val currentLocalTime = cal.getTime()
-//        val date = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
-        dbref.child("time").setValue(post.time)
-        dbref.child("type").setValue(post.type)
-        dbref.child("tag").setValue(post.tags)
-        val dbref1 = database.getReference("users").child(firebaseAuth.currentUser?.uid)
-        dbref1.child("posts").setValue(pids)
+        val postRef: DatabaseReference = database.getReference("posts").push()
+        val key = postRef.key
+        //pids.add(key)
+        postRef.child("name").setValue(post.name)
+        postRef.child("price").setValue(post.price)
+        postRef.child("uid").setValue(firebaseAuth.currentUser?.uid)
+        postRef.child("time").setValue(post.time)
+        postRef.child("type").setValue(post.type)
+        postRef.child("tag").setValue(post.tags)
+
+        val userPostRef = database.getReference("users").child(firebaseAuth.currentUser?.uid).child("posts")
+        //userPostRef.child("posts").setValue(pids)
+        userPostRef.child(key).setValue(true)
     }
 }

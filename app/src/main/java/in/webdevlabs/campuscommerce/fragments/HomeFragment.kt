@@ -2,7 +2,7 @@ package `in`.webdevlabs.campuscommerce.fragments
 
 import `in`.webdevlabs.campuscommerce.R
 import `in`.webdevlabs.campuscommerce.activities.NewPostActivity
-import `in`.webdevlabs.campuscommerce.adapters.CustomAdapter
+import `in`.webdevlabs.campuscommerce.adapters.PostViewHolder
 import `in`.webdevlabs.campuscommerce.model.Post
 import android.content.Intent
 import android.os.Bundle
@@ -12,9 +12,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.google.firebase.database.ChildEventListener
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
+import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.fragment_home.*
 
@@ -26,51 +24,22 @@ class HomeFragment : Fragment() {
         val database: FirebaseDatabase = FirebaseDatabase.getInstance()
         val mPostReference = database.reference
 
-        val list = ArrayList<Post>();
         val rView = view.findViewById(R.id.my_recycler_view) as RecyclerView;
-        val adapter = CustomAdapter(list)
 
-        /* mPostReference.child("posts").addListenerForSingleValueEvent(object : ValueEventListener {
-             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                 if (dataSnapshot.exists()) {
-                     list.clear()
-                     for (ds in dataSnapshot.children) {
-                         val post = ds.getValue<Post>(Post::class.java)
-                         list.add(Post(post!!.pid, post.name, post.price, post.uid, post.time, post.type, post.tags))
-                     }
-                     adapter.notifyDataSetChanged()
-                 }
-             }
+        val recyclerAdapter = object : FirebaseRecyclerAdapter<Post, PostViewHolder>(
+                Post::class.java, R.layout.item_post,
+                PostViewHolder::class.java, mPostReference.child("posts")) {
 
-             override fun onCancelled(firebaseError: DatabaseError) {
-             }
-         })*/
-
-        mPostReference.child("posts").addChildEventListener(object : ChildEventListener {
-            override fun onCancelled(databaseError: DatabaseError?) {
-            }
-
-            override fun onChildMoved(dataSnapshot: DataSnapshot?, key: String?) {
-            }
-
-            override fun onChildChanged(dataSnapshot: DataSnapshot?, key: String?) {
-            }
-
-            override fun onChildAdded(dataSnapshot: DataSnapshot?, key: String?) {
-                val post = dataSnapshot?.getValue(Post::class.java)
+            override fun populateViewHolder(viewHolder: PostViewHolder?, post: Post?, position: Int) {
                 if (post != null) {
-                    adapter.list.add(post)
-                    adapter.notifyDataSetChanged()
+                    viewHolder?.bindPost(post)
                 }
             }
+        }
 
-            override fun onChildRemoved(dataSnapshot: DataSnapshot?) {
-            }
-
-        })
-
-        rView.adapter = adapter
+        rView.setHasFixedSize(true)
         rView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+        rView.adapter = recyclerAdapter
         return view
     }
 
