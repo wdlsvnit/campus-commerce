@@ -44,7 +44,7 @@ class NewPostActivity : AppCompatActivity() {
         }
 
         val currentLocalTime = Calendar.getInstance(TimeZone.getDefault()).time
-        val date = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX", Locale.getDefault())
+        val date = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", Locale.getDefault())
         val time = date.format(currentLocalTime)
 
         val post = Post("1", title, price, firebaseAuth.currentUser?.uid!!, time, type, listOf(""))

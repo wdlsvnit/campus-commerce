@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "450891800393-uha4bkmeli9q7tju6v4capucn3n5rnje.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "in.webdevlabs.campuscommerce",
+            "certificate_hash": "3ac1e7d126dbc6e159a6fa3d610021cc69287013"
+          }
+        },
+        {
+          "client_id": "450891800393-4vpcnosee880u13dm82khpba1jslshuk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "in.webdevlabs.campuscommerce",
+            "certificate_hash": "06d190514baa3a32fb8cb69a27842c4b540d70ed"
+          }
+        },
+        {
           "client_id": "450891800393-7dlsu81pfsimggfk6k9104kpspbjmgre.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
