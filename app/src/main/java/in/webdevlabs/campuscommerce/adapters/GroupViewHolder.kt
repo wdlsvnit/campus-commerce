@@ -16,15 +16,16 @@ import com.google.firebase.auth.FirebaseAuth
 
 class GroupViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    var text: TextView = itemView.findViewById(R.id.text) as TextView
+    var text: TextView = itemView.findViewById(R.id.ctext) as TextView
 
     fun bindPost(group: Group) {
-        this.text.text = group.sname
+        this.text.text = group.suid
         text.setOnClickListener(object : View.OnClickListener {
             override fun onClick(p0: View?) {
                 val intent = Intent(App.applicationContext(),ChatActivity::class.java)
 
-                intent.putExtra("uid",group.ruid)
+
+                intent.putExtra("uid",group.suid)
                 intent.putExtra("pid",group.pid)
                 App.applicationContext().startActivity(intent)
 

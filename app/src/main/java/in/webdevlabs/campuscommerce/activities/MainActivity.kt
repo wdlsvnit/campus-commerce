@@ -1,13 +1,12 @@
 package `in`.webdevlabs.campuscommerce.activities
 
 import `in`.webdevlabs.campuscommerce.R
-import `in`.webdevlabs.campuscommerce.fragments.MyChats
 import `in`.webdevlabs.campuscommerce.fragments.HomeFragment
+import `in`.webdevlabs.campuscommerce.fragments.MyChats
 import `in`.webdevlabs.campuscommerce.utils.Constants
 import `in`.webdevlabs.campuscommerce.utils.FirebaseUtil
 import android.app.Activity
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
@@ -39,7 +38,7 @@ class MainActivity : AppCompatActivity() {
     private var itemVerifiedProfile: PrimaryDrawerItem? = null
     private var itemUnverifiedProfile: PrimaryDrawerItem? = null
     private var itemHome: PrimaryDrawerItem? = null
-    private var itemDevices: PrimaryDrawerItem? = null
+    private var itemChats: PrimaryDrawerItem? = null
     private var itemSettings: PrimaryDrawerItem? = null
     private var currentProfile: PrimaryDrawerItem? = null
     private var androidID = ""
@@ -84,8 +83,7 @@ class MainActivity : AppCompatActivity() {
         itemSignOut = PrimaryDrawerItem().withIdentifier(Constants.ITEM_SIGN_OUT.toLong()).withName(R.string.menu_item_sign_out).withIcon(resources.getDrawable(R.drawable.ic_sign_out)).withSelectable(false)
 
         itemHome = PrimaryDrawerItem().withIdentifier(Constants.ITEM_HOME.toLong()).withName(R.string.menu_item_home).withIcon(resources.getDrawable(R.drawable.ic_home_black_24dp))
-        itemDevices = PrimaryDrawerItem().withIdentifier(Constants.ITEM_DEVICES.toLong()).withName(R.string.menu_item_devices).withIcon(resources.getDrawable(R.drawable.ic_devices_black_24dp))
-        itemSettings = PrimaryDrawerItem().withIdentifier(Constants.ITEM_SETTINGS.toLong()).withName(R.string.menu_item_settings).withIcon(resources.getDrawable(R.drawable.ic_settings_black_24dp)).withSelectable(false)
+        itemChats = PrimaryDrawerItem().withIdentifier(Constants.ITEM_CHATS.toLong()).withName(R.string.menu_item_chats).withIcon(resources.getDrawable(R.drawable.ic_chat_bubble_outline_black_24dp))
     }
 
     private fun setupProfileDrawer() {
@@ -117,7 +115,7 @@ class MainActivity : AppCompatActivity() {
                     .withActivity(this)
                     .withAccountHeader(setupAccountHeader())
                     .withToolbar(toolbar)
-                    .addDrawerItems(itemSignIn, DividerDrawerItem(), itemHome, itemDevices, itemSettings, DividerDrawerItem())
+                    .addDrawerItems(itemSignIn, DividerDrawerItem(), itemHome, itemChats, itemSettings, DividerDrawerItem())
                     .withOnDrawerItemClickListener { _, _, drawerItem ->
                         onNavDrawerItemSelected(drawerItem.identifier.toInt())
                         true
@@ -129,7 +127,7 @@ class MainActivity : AppCompatActivity() {
                     .withActivity(this)
                     .withAccountHeader(setupAccountHeader())
                     .withToolbar(toolbar)
-                    .addDrawerItems(currentProfile, DividerDrawerItem(), itemHome, itemDevices, itemSettings, DividerDrawerItem(), itemSignOut)
+                    .addDrawerItems(currentProfile, DividerDrawerItem(), itemHome, itemChats, itemSettings, DividerDrawerItem(), itemSignOut)
                     .withOnDrawerItemClickListener { view, position, drawerItem ->
                         onNavDrawerItemSelected(drawerItem.identifier.toInt())
                         true
@@ -153,11 +151,8 @@ class MainActivity : AppCompatActivity() {
             Constants.ITEM_HOME -> {
                 replaceFragment(HomeFragment())
             }
-            Constants.ITEM_DEVICES -> {
+            Constants.ITEM_CHATS -> {
                 replaceFragment(MyChats())
-            }
-            Constants.ITEM_SETTINGS -> {
-                //Start settings activity
             }
             Constants.ITEM_SIGN_OUT -> {
                 signOutUser()
@@ -177,10 +172,10 @@ class MainActivity : AppCompatActivity() {
                 //Successfully signed in
                 Toast.makeText(this, R.string.sign_in_success, Toast.LENGTH_LONG).show()
 
-                val sp = this.getSharedPreferences("sp",0)
-                val editor = sp!!.edit()
-                editor.putString("username",FirebaseAuth.getInstance().currentUser?.displayName)
-                editor.apply()
+//                val sp = this.getSharedPreferences("sp", 0)
+//                val editor = sp!!.edit()
+//                editor.putString("username", FirebaseAuth.getInstance().currentUser?.displayName)
+//                editor.apply()
 
                 updateUIAfterSignIn()
                 FirebaseUtil.addCurrentUserToFirebaseDatabase()

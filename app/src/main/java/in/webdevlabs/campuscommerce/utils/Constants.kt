@@ -14,8 +14,7 @@ object Constants {
     const val ITEM_UNVERIFIED_PROFILE = 2
     const val ITEM_SIGN_IN = 3
     const val ITEM_HOME = 4
-    const val ITEM_DEVICES = 5
-    const val ITEM_SETTINGS = 6
-    const val ITEM_SIGN_OUT = 7
+    const val ITEM_CHATS = 5
+    const val ITEM_SIGN_OUT = 6
 
 }
