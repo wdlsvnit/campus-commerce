@@ -4,8 +4,8 @@ package `in`.webdevlabs.campuscommerce.adapters
  * Created by yolo on 7/4/18.
  */
 import `in`.webdevlabs.campuscommerce.App
-import `in`.webdevlabs.campuscommerce.activities.ChatActivity
 import `in`.webdevlabs.campuscommerce.R
+import `in`.webdevlabs.campuscommerce.activities.ChatActivity
 import `in`.webdevlabs.campuscommerce.model.Post
 import `in`.webdevlabs.campuscommerce.model.PostType
 import android.content.Intent
@@ -43,13 +43,6 @@ class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         post.time?.run {
             time.text = DateUtils.getRelativeTimeSpanString(sdf.parse(post.time).time, System.currentTimeMillis(), DateUtils.MINUTE_IN_MILLIS)
         }
-        chat.setOnClickListener(object :View.OnClickListener{
-            override fun onClick(p0: View?) {
-                val intent = Intent(App.applicationContext(),ChatActivity::class.java)
-                intent.putExtra("uid",post.uid)
-                intent.putExtra("pid",post.pid)
-                App.applicationContext().startActivity(intent)
-            }
 
         this.chat.setOnClickListener {
             val intent = Intent(App.applicationContext(), ChatActivity::class.java)

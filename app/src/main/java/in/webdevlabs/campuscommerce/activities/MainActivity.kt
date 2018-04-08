@@ -7,7 +7,6 @@ import `in`.webdevlabs.campuscommerce.utils.Constants
 import `in`.webdevlabs.campuscommerce.utils.FirebaseUtil
 import android.app.Activity
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
@@ -85,7 +84,6 @@ class MainActivity : AppCompatActivity() {
 
         itemHome = PrimaryDrawerItem().withIdentifier(Constants.ITEM_HOME.toLong()).withName(R.string.menu_item_home).withIcon(resources.getDrawable(R.drawable.ic_home_black_24dp))
         itemChats = PrimaryDrawerItem().withIdentifier(Constants.ITEM_CHATS.toLong()).withName(R.string.menu_item_chats).withIcon(resources.getDrawable(R.drawable.ic_chat_bubble_outline_black_24dp))
-        itemSettings = PrimaryDrawerItem().withIdentifier(Constants.ITEM_SETTINGS.toLong()).withName(R.string.menu_item_settings).withIcon(resources.getDrawable(R.drawable.ic_settings_black_24dp)).withSelectable(false)
     }
 
     private fun setupProfileDrawer() {
@@ -156,9 +154,6 @@ class MainActivity : AppCompatActivity() {
             Constants.ITEM_CHATS -> {
                 replaceFragment(MyChats())
             }
-            Constants.ITEM_SETTINGS -> {
-                //Start settings activity
-            }
             Constants.ITEM_SIGN_OUT -> {
                 signOutUser()
             }
@@ -177,9 +172,9 @@ class MainActivity : AppCompatActivity() {
                 //Successfully signed in
                 Toast.makeText(this, R.string.sign_in_success, Toast.LENGTH_LONG).show()
 
-                val sp = this.getSharedPreferences("sp",0)
+                val sp = this.getSharedPreferences("sp", 0)
                 val editor = sp!!.edit()
-                editor.putString("username",FirebaseAuth.getInstance().currentUser?.displayName)
+                editor.putString("username", FirebaseAuth.getInstance().currentUser?.displayName)
                 editor.apply()
 
                 updateUIAfterSignIn()
