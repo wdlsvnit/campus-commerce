@@ -10,7 +10,7 @@ data class Post(
         val uid: String? = null,
         val time: String? = null,
         val type: PostType? = null,
-        val tags: List<String>? = null
+        val tag: String? = null
 )
 
 enum class PostType(val type: String) {

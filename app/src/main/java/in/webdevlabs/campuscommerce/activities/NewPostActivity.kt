@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import com.hootsuite.nachos.terminator.ChipTerminatorHandler
 import kotlinx.android.synthetic.main.activity_new_post.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -26,8 +25,6 @@ class NewPostActivity : AppCompatActivity() {
     }
 
     private fun setup() {
-        nacho_text_view.addChipTerminator('\n', ChipTerminatorHandler.BEHAVIOR_CHIPIFY_ALL)
-
         submit.setOnClickListener({
             submit()
         })
@@ -49,16 +46,9 @@ class NewPostActivity : AppCompatActivity() {
         val currentLocalTime = Calendar.getInstance(TimeZone.getDefault()).time
         val date = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX", Locale.getDefault())
         val time = date.format(currentLocalTime)
-        val tagList: ArrayList<String> = arrayListOf()
+        val tag = tag_text.text.toString()
 
-        // Iterate over all of the chips in the NachoTextView
-        for (chip in nacho_text_view.allChips) {
-            // Do something with the text of each chip
-            val text = chip.text
-            tagList.add(text.toString())
-        }
-
-        val post = Post("1", title, price, firebaseAuth.currentUser?.uid!!, time, type, tagList.toList())
+        val post = Post("1", title, price, firebaseAuth.currentUser?.uid!!, time, type, tag)
         Toast.makeText(this, "Post submitted", Toast.LENGTH_SHORT).show()
 
         FirebaseUtil.addPostToFirebaseDatabase(post)

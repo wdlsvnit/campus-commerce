@@ -42,7 +42,7 @@ object FirebaseUtil {
         postRef.child("time").setValue(post.time)
         postRef.child("type").setValue(post.type)
         postRef.child("pid").setValue(key)
-        postRef.child("tags").setValue(post.tags)
+        postRef.child("tag").setValue(post.tag)
 
         val userPostRef = database.getReference("users").child(firebaseAuth.currentUser?.uid).child("posts")
         //userPostRef.child("posts").setValue(pids)

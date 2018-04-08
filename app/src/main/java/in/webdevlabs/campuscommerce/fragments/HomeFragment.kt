@@ -13,9 +13,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.firebase.ui.database.FirebaseRecyclerAdapter
-import com.google.firebase.database.*
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_home.*
 
 
@@ -34,37 +32,8 @@ class HomeFragment : Fragment() {
                 PostViewHolder::class.java, mPostReference.child("posts")) {
 
             override fun populateViewHolder(viewHolder: PostViewHolder?, post: Post?, position: Int) {
-                var tags: List<String>? = listOf()
                 if (post != null) {
-                    if (post.tags == null) {
-                        mPostReference.child("posts")
-                                .child(post.pid).child("tags")
-                                .addValueEventListener(object : ValueEventListener {
-                                    override fun onDataChange(dataSnapshot: DataSnapshot?) {
-                                        val t: GenericTypeIndicator<List<String>> = GenericTypeIndicator()
-                                        tags = dataSnapshot?.getValue(t)
-                                        if (tags === null) {
-                                            System.out.println("No tags")
-                                        } else {
-                                            System.out.println("The first tag is: " + tags.toString())
-                                        }
-                                    }
-
-                                    override fun onCancelled(databaseError: DatabaseError?) {
-                                    }
-                                })
-                    }
-                    
-                    val newPost = Post(
-                            post.pid,
-                            post.name,
-                            post.price,
-                            post.uid,
-                            post.time,
-                            post.type,
-                            tags
-                    )
-                    viewHolder?.bindPost(newPost)
+                    viewHolder?.bindPost(post)
                 }
             }
         }
