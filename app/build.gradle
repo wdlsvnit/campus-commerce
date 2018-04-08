@@ -39,6 +39,9 @@ dependencies {
     implementation 'com.firebaseui:firebase-ui-database:1.0.1'
     implementation 'com.firebase:firebase-client-android:2.4.0'
     implementation 'com.firebaseui:firebase-ui:0.3.1'
+    implementation 'com.hootsuite.android:nachos:1.1.1'
+    implementation 'com.github.fiskurgit:ChipCloud:3.0.5'
+    implementation 'com.google.android:flexbox:0.3.2'
 
     implementation "com.google.android.gms:play-services-auth:${firebaseLibraryVersion}"
 

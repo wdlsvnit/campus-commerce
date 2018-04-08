@@ -5,22 +5,22 @@
     android:orientation="vertical"
     android:tag="cards main container">
 
-    <android.support.v7.widget.CardView
+    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/card_view"
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        card_view:cardCornerRadius="10dp"
+        card_view:cardCornerRadius="3dp"
         card_view:cardElevation="5dp"
         card_view:cardUseCompatPadding="true">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <RelativeLayout
+                android:id="@+id/name_time"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/name_time">
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:id="@+id/name"
@@ -28,19 +28,20 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_margin="5dp"
-                    android:textStyle="bold"
                     android:text="Name"
-                    android:textAppearance="?android:attr/textAppearanceLarge"/>
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textStyle="bold" />
+
                 <TextView
                     android:id="@+id/time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="15dp"
                     android:layout_alignParentRight="true"
                     android:layout_margin="5dp"
                     android:layout_marginRight="10dp"
                     android:text="Time"
-                    android:textAppearance="?android:attr/textAppearanceLarge"/>
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textSize="12sp" />
             </RelativeLayout>
 
             <TextView
@@ -49,28 +50,35 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/name_time"
                 android:layout_margin="5dp"
-                android:textStyle="italic"
                 android:text="Price"
-                android:textAppearance="?android:attr/textAppearanceLarge"/>
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textStyle="italic" />
 
-            <ImageView
-                android:layout_width="80dp"
-                android:layout_height="50dp"
-                android:src="@drawable/chat"
-                android:id="@+id/chat"
-                android:layout_below="@+id/price"
-                android:layout_alignParentRight="true"/>
-
-            <TextView
-                android:id="@+id/type"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Sell"
-                android:layout_below="@+id/price"
+                android:layout_below="@+id/price">
 
-                android:layout_margin="5dp"
-                android:textAppearance="?android:attr/textAppearanceLarge"/>
+                <com.google.android.flexbox.FlexboxLayout xmlns:app="http://schemas.android.com/tools"
+                    android:id="@+id/flexBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:alignContent="stretch"
+                    app:alignItems="stretch"
+                    app:flexWrap="wrap" />
 
+                <TextView
+                    android:id="@+id/type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/rounded_corner"
+                    android:text="Sell"
+                    android:textSize="18sp" />
+
+            </RelativeLayout>
         </RelativeLayout>
 
     </android.support.v7.widget.CardView>
