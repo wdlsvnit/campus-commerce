@@ -4,6 +4,7 @@ import `in`.webdevlabs.campuscommerce.R
 import `in`.webdevlabs.campuscommerce.fragments.HomeFragment
 import `in`.webdevlabs.campuscommerce.fragments.MyChats
 import `in`.webdevlabs.campuscommerce.utils.Config
+import `in`.webdevlabs.campuscommerce.fragments.SubscriptionFragment
 import `in`.webdevlabs.campuscommerce.utils.Constants
 import `in`.webdevlabs.campuscommerce.utils.FirebaseUtil
 import `in`.webdevlabs.campuscommerce.utils.NotificationUtils
@@ -225,7 +226,7 @@ class MainActivity : AppCompatActivity() {
                 replaceFragment(MyChats())
             }
             Constants.ITEM_SUB -> {
-                replaceFragment(MyChats())
+                replaceFragment(SubscriptionFragment())
             }
             Constants.ITEM_SIGN_OUT -> {
                 signOutUser()

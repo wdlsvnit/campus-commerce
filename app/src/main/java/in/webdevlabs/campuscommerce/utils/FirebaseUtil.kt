@@ -64,4 +64,9 @@ object FirebaseUtil {
         chatRef.child("msg").setValue(chat.msg)
         chatRef.child("time").setValue(chat.time)
     }
+
+    fun addTagToFirebaseDatabase(tag: String, uid: String) {
+        val tagRef: DatabaseReference = database.getReference("users")
+        tagRef.child(uid).child("tags").setValue(tag)
+    }
 }
