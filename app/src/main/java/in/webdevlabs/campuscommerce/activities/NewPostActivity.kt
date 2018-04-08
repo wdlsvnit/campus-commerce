@@ -48,7 +48,7 @@ class NewPostActivity : AppCompatActivity() {
         val time = date.format(currentLocalTime)
 
         val post = Post("1", title, price, firebaseAuth.currentUser?.uid!!, time, type, listOf(""))
-        Toast.makeText(this, "Post submitted", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Post.kt submitted", Toast.LENGTH_SHORT).show()
 
         FirebaseUtil.addPostToFirebaseDatabase(post)
 

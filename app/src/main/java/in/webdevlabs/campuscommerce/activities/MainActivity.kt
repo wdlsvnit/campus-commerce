@@ -1,10 +1,8 @@
 package `in`.webdevlabs.campuscommerce.activities
 
 import `in`.webdevlabs.campuscommerce.R
-import `in`.webdevlabs.campuscommerce.fragments.DevicesFragment
+import `in`.webdevlabs.campuscommerce.fragments.MyChats
 import `in`.webdevlabs.campuscommerce.fragments.HomeFragment
-import `in`.webdevlabs.campuscommerce.model.Post
-import `in`.webdevlabs.campuscommerce.model.PostType
 import `in`.webdevlabs.campuscommerce.utils.Constants
 import `in`.webdevlabs.campuscommerce.utils.FirebaseUtil
 import android.app.Activity
@@ -155,7 +153,7 @@ class MainActivity : AppCompatActivity() {
                 replaceFragment(HomeFragment())
             }
             Constants.ITEM_DEVICES -> {
-                replaceFragment(DevicesFragment())
+                replaceFragment(MyChats())
             }
             Constants.ITEM_SETTINGS -> {
                 //Start settings activity

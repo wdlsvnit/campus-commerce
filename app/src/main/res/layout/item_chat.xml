@@ -10,9 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_vertical">
-
-
-
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -21,18 +18,17 @@
             android:layout_marginLeft="10dp">
 
             <TextView
-                android:id="@+id/messageTextView"
+                android:id="@+id/msg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
                 android:textAppearance="?android:attr/textAppearanceLarge"/>
-
             <TextView
-                android:id="@+id/messengerTextView"
+                android:id="@+id/time_chat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
-                android:textAppearance="?android:attr/textAppearanceSmall"/>
+                android:textAppearance="?android:attr/textAppearanceLarge"/>
         </LinearLayout>
 
     </LinearLayout>
