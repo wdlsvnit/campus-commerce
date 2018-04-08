@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+
     android:tag="cards main container">
 
     <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -11,6 +12,7 @@
         android:layout_height="wrap_content"
         card_view:cardCornerRadius="10dp"
         card_view:cardElevation="5dp"
+        card_view:cardBackgroundColor="#DCDCDC"
         card_view:cardUseCompatPadding="true">
 
         <RelativeLayout
@@ -29,6 +31,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_margin="5dp"
                     android:text="Name"
+                    android:textSize="30dp"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textStyle="bold" />
 
@@ -51,6 +54,7 @@
                 android:layout_below="@+id/name_time"
                 android:layout_margin="5dp"
                 android:text="Price"
+                android:textSize="15dp"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textStyle="italic" />
 
@@ -60,12 +64,13 @@
                 android:layout_height="50dp"
                 android:layout_alignParentRight="true"
                 android:layout_below="@+id/price"
-                android:src="@drawable/chat" />
+                android:src="@drawable/ic_chat_black_24dp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/price"
+                android:orientation="vertical"
                 android:layout_margin="5dp">
 
                 <TextView
@@ -74,6 +79,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:text="tag"
+                    android:textSize="15dp"
                     android:textAppearance="?android:attr/textAppearanceLarge" />
 
                 <TextView
@@ -82,6 +88,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:text="Sell"
+                    android:textSize="15dp"
                     android:textAppearance="?android:attr/textAppearanceLarge" />
 
             </LinearLayout>
