@@ -3,12 +3,18 @@ package `in`.webdevlabs.campuscommerce.activities
 import `in`.webdevlabs.campuscommerce.R
 import `in`.webdevlabs.campuscommerce.fragments.HomeFragment
 import `in`.webdevlabs.campuscommerce.fragments.MyChats
+import `in`.webdevlabs.campuscommerce.utils.Config
 import `in`.webdevlabs.campuscommerce.utils.Constants
 import `in`.webdevlabs.campuscommerce.utils.FirebaseUtil
+import `in`.webdevlabs.campuscommerce.utils.NotificationUtils
 import android.app.Activity
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.content.LocalBroadcastManager
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.widget.Toast
@@ -16,6 +22,7 @@ import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.ErrorCodes
 import com.firebase.ui.auth.IdpResponse
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.messaging.FirebaseMessaging
 import com.mikepenz.materialdrawer.AccountHeader
 import com.mikepenz.materialdrawer.AccountHeaderBuilder
 import com.mikepenz.materialdrawer.Drawer
@@ -26,7 +33,11 @@ import com.mikepenz.materialdrawer.model.ProfileDrawerItem
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
+
 class MainActivity : AppCompatActivity() {
+
+    private val TAG = MainActivity::class.java.simpleName
+    private var registrationBroadcastReceiver: BroadcastReceiver? = null
 
     private lateinit var firebaseAuth: FirebaseAuth
 
@@ -41,7 +52,6 @@ class MainActivity : AppCompatActivity() {
     private var itemChats: PrimaryDrawerItem? = null
     private var itemSubscriptions: PrimaryDrawerItem? = null
     private var currentProfile: PrimaryDrawerItem? = null
-    private var androidID = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +62,65 @@ class MainActivity : AppCompatActivity() {
         instantiateMenuItems()
         setupProfileDrawer()
         setupNavigationDrawerWithHeader()
+        setupBroadcastReceiver()
+    }
+
+    private fun setupBroadcastReceiver() {
+        registrationBroadcastReceiver = object : BroadcastReceiver() {
+            @Override
+            override fun onReceive(context: Context, intent: Intent) {
+
+                // checking for type intent filter
+                if (intent.action == Config.REGISTRATION_COMPLETE) {
+                    // gcm successfully registered
+                    // now subscribe to `global` topic to receive app wide notifications
+                    FirebaseMessaging.getInstance().subscribeToTopic(Config.TOPIC_GLOBAL);
+
+                    displayFirebaseRegId();
+
+                } else if (intent.action == Config.PUSH_NOTIFICATION) {
+                    // new push notification is received
+
+                    val message: String = intent.getStringExtra("message");
+
+                    Toast.makeText(applicationContext, "Push notification: " + message, Toast.LENGTH_LONG).show();
+                }
+            }
+        }
+    }
+
+    @Override
+    override fun onResume() {
+        super.onResume()
+
+        // register GCM registration complete receiver
+        LocalBroadcastManager.getInstance(this).registerReceiver(this.registrationBroadcastReceiver!!,
+                object : IntentFilter(Config.REGISTRATION_COMPLETE) {})
+
+        // register new push message receiver
+        // by doing this, the activity will be notified each time a new message arrives
+        LocalBroadcastManager.getInstance(this).registerReceiver(this.registrationBroadcastReceiver!!,
+                object : IntentFilter(Config.REGISTRATION_COMPLETE) {})
+
+        // clear the notification area when the app is opened
+        NotificationUtils.clearNotifications(applicationContext)
+    }
+
+    override fun onPause() {
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(this.registrationBroadcastReceiver!!)
+        super.onPause()
+    }
+
+    private fun displayFirebaseRegId() {
+        val pref = applicationContext.getSharedPreferences(Config.SHARED_PREF, 0);
+        val regId: String = pref.getString("regId", null);
+
+        Log.e(TAG, "Firebase reg id: " + regId);
+
+        if (!regId.isEmpty())
+            Log.d("fcm", "Firebase Reg Id: " + regId)
+        else
+            Log.d("fcm", "Firebase Reg Id is not received yet!")
     }
 
     private fun setupToolbar() {
@@ -84,7 +153,7 @@ class MainActivity : AppCompatActivity() {
 
         itemHome = PrimaryDrawerItem().withIdentifier(Constants.ITEM_HOME.toLong()).withName(R.string.menu_item_home).withIcon(resources.getDrawable(R.drawable.ic_home_black_24dp))
         itemChats = PrimaryDrawerItem().withIdentifier(Constants.ITEM_CHATS.toLong()).withName(R.string.menu_item_chats).withIcon(resources.getDrawable(R.drawable.ic_chat_bubble_outline_black_24dp))
-        itemSubscriptions = PrimaryDrawerItem().withIdentifier(Constants.ITEM_SUB.toLong()).withName(R.string.menu_item_chats).withIcon(resources.getDrawable(R.drawable.ic_notifications_black_24dp))
+        itemSubscriptions = PrimaryDrawerItem().withIdentifier(Constants.ITEM_SUB.toLong()).withName(R.string.menu_item_subs).withIcon(resources.getDrawable(R.drawable.ic_notifications_black_24dp))
     }
 
     private fun setupProfileDrawer() {

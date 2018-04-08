@@ -10,6 +10,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.MenuItem
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -72,6 +73,7 @@ class ChatActivity : AppCompatActivity() {
     private fun setup() {
         sendButton.setOnClickListener({
             send()
+            msgEditText.clearComposingText()
         })
         msgEditText.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
@@ -106,5 +108,13 @@ class ChatActivity : AppCompatActivity() {
 
         val chat = Chat(msg, time)
         FirebaseUtil.addChatToFirebaseDatabase(gid, chat)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            finish()
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 }
