@@ -32,12 +32,12 @@ class ChatActivity : AppCompatActivity() {
             ruid = bundle.getString("uid")
             pid = bundle.getString("pid")
         }
-        val sp = this.getSharedPreferences("sp",0)
-        sname = sp.getString("username","")
+//        val sp = this.getSharedPreferences("sp",0)
+//        sname = sp.getString("username","")
 
         suid = FirebaseAuth.getInstance().currentUser!!.uid
 
-        FirebaseUtil.addGroupToDatabase(suid, ruid, pid,sname)
+        FirebaseUtil.addGroupToDatabase(suid, ruid, pid)
 
         gid = (ruid.hashCode() + suid.hashCode() + pid.hashCode()).toString()
         val database: FirebaseDatabase = FirebaseDatabase.getInstance()

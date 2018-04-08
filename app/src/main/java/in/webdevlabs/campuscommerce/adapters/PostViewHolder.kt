@@ -14,6 +14,7 @@ import android.text.format.DateUtils
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import com.google.firebase.auth.FirebaseAuth
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -44,11 +45,16 @@ class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             time.text = DateUtils.getRelativeTimeSpanString(sdf.parse(post.time).time, System.currentTimeMillis(), DateUtils.MINUTE_IN_MILLIS)
         }
 
-        this.chat.setOnClickListener {
-            val intent = Intent(App.applicationContext(), ChatActivity::class.java)
-            intent.putExtra("uid", post.uid)
-            intent.putExtra("pid", post.pid)
-            App.applicationContext().startActivity(intent)
+        if (post.uid == FirebaseAuth.getInstance().currentUser?.uid) {
+            chat.visibility = View.GONE
+        } else {
+            this.chat.setOnClickListener {
+                val intent = Intent(App.applicationContext(), ChatActivity::class.java)
+                intent.putExtra("uid", post.uid)
+                intent.putExtra("pid", post.pid)
+                App.applicationContext().startActivity(intent)
+            }
         }
+
     }
 }

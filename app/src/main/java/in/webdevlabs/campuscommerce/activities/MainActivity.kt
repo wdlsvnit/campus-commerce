@@ -172,10 +172,10 @@ class MainActivity : AppCompatActivity() {
                 //Successfully signed in
                 Toast.makeText(this, R.string.sign_in_success, Toast.LENGTH_LONG).show()
 
-                val sp = this.getSharedPreferences("sp", 0)
-                val editor = sp!!.edit()
-                editor.putString("username", FirebaseAuth.getInstance().currentUser?.displayName)
-                editor.apply()
+//                val sp = this.getSharedPreferences("sp", 0)
+//                val editor = sp!!.edit()
+//                editor.putString("username", FirebaseAuth.getInstance().currentUser?.displayName)
+//                editor.apply()
 
                 updateUIAfterSignIn()
                 FirebaseUtil.addCurrentUserToFirebaseDatabase()
