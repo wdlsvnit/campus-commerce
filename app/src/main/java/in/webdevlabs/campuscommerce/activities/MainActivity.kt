@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
     private var itemUnverifiedProfile: PrimaryDrawerItem? = null
     private var itemHome: PrimaryDrawerItem? = null
     private var itemChats: PrimaryDrawerItem? = null
-    private var itemSettings: PrimaryDrawerItem? = null
+    private var itemSubscriptions: PrimaryDrawerItem? = null
     private var currentProfile: PrimaryDrawerItem? = null
     private var androidID = ""
 
@@ -84,6 +84,7 @@ class MainActivity : AppCompatActivity() {
 
         itemHome = PrimaryDrawerItem().withIdentifier(Constants.ITEM_HOME.toLong()).withName(R.string.menu_item_home).withIcon(resources.getDrawable(R.drawable.ic_home_black_24dp))
         itemChats = PrimaryDrawerItem().withIdentifier(Constants.ITEM_CHATS.toLong()).withName(R.string.menu_item_chats).withIcon(resources.getDrawable(R.drawable.ic_chat_bubble_outline_black_24dp))
+        itemSubscriptions = PrimaryDrawerItem().withIdentifier(Constants.ITEM_SUB.toLong()).withName(R.string.menu_item_chats).withIcon(resources.getDrawable(R.drawable.ic_notifications_black_24dp))
     }
 
     private fun setupProfileDrawer() {
@@ -115,7 +116,7 @@ class MainActivity : AppCompatActivity() {
                     .withActivity(this)
                     .withAccountHeader(setupAccountHeader())
                     .withToolbar(toolbar)
-                    .addDrawerItems(itemSignIn, DividerDrawerItem(), itemHome, itemChats, itemSettings, DividerDrawerItem())
+                    .addDrawerItems(itemSignIn, DividerDrawerItem(), itemHome, itemChats, itemSubscriptions, DividerDrawerItem())
                     .withOnDrawerItemClickListener { _, _, drawerItem ->
                         onNavDrawerItemSelected(drawerItem.identifier.toInt())
                         true
@@ -127,7 +128,7 @@ class MainActivity : AppCompatActivity() {
                     .withActivity(this)
                     .withAccountHeader(setupAccountHeader())
                     .withToolbar(toolbar)
-                    .addDrawerItems(currentProfile, DividerDrawerItem(), itemHome, itemChats, itemSettings, DividerDrawerItem(), itemSignOut)
+                    .addDrawerItems(currentProfile, DividerDrawerItem(), itemHome, itemChats, itemSubscriptions, DividerDrawerItem(), itemSignOut)
                     .withOnDrawerItemClickListener { view, position, drawerItem ->
                         onNavDrawerItemSelected(drawerItem.identifier.toInt())
                         true
@@ -152,6 +153,9 @@ class MainActivity : AppCompatActivity() {
                 replaceFragment(HomeFragment())
             }
             Constants.ITEM_CHATS -> {
+                replaceFragment(MyChats())
+            }
+            Constants.ITEM_SUB -> {
                 replaceFragment(MyChats())
             }
             Constants.ITEM_SIGN_OUT -> {
