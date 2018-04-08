@@ -9,7 +9,7 @@
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
     android:paddingTop="10dp"
-    tools:context=".ChatActivity">
+    tools:context=".activities.ChatActivity">
 
 
     <android.support.v7.widget.RecyclerView

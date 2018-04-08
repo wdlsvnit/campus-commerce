@@ -19,7 +19,7 @@
         </activity>
         <activity android:name=".activities.NewPostActivity"></activity>
         <activity android:name=".CardActivity" />
-        <activity android:name=".ChatActivity"></activity>
+        <activity android:name=".activities.ChatActivity"></activity>
     </application>
 
 </manifest>

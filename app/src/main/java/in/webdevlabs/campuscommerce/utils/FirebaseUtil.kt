@@ -48,18 +48,18 @@ object FirebaseUtil {
         userPostRef.child(key).setValue(true)
     }
 
-    fun addGroupToDatabase(suid: String, ruid: String, pid: String) {
-        val gid = suid.hashCode() + ruid.hashCode() + pid.hashCode()
-        val groupRef: DatabaseReference = database.getReference("groups").child(gid.toString())
+    fun addGroupToDatabase(suid: String, ruid: String, pid: String,sname:String) {
+        val gid = (suid.hashCode() + ruid.hashCode() + pid.hashCode()).toString()
+        val groupRef: DatabaseReference = database.getReference("groups").child(gid)
         groupRef.child("gid").setValue(gid)
         groupRef.child("suid").setValue(suid)
         groupRef.child("ruid").setValue(ruid)
         groupRef.child("pid").setValue(pid)
+        groupRef.child("sname").setValue(sname)
     }
 
-    fun addChatToFirebaseDatabase(gid: Int, chat: Chat) {
-        val chatRef: DatabaseReference = database.getReference("groups").child(gid.toString()).child("chats").push()
-
+    fun addChatToFirebaseDatabase(gid:String, chat: Chat) {
+        val chatRef: DatabaseReference = database.getReference("groups").child(gid).child("chats").push()
         chatRef.child("msg").setValue(chat.msg)
         chatRef.child("time").setValue(chat.time)
     }

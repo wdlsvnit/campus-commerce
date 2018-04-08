@@ -5,6 +5,7 @@ package `in`.webdevlabs.campuscommerce.model
  */
 data class Group(
         val gid: String? = null,
-        val uid: String? = null,
-        val sid: String? = null,
-        val pid: String? = null)
+        val ruid: String? = null,
+        val suid: String? = null,
+        val pid: String? = null,
+        val sname:String?=null)

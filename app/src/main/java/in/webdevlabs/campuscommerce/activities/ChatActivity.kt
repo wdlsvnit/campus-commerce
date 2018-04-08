@@ -1,5 +1,6 @@
-package `in`.webdevlabs.campuscommerce
+package `in`.webdevlabs.campuscommerce.activities
 
+import `in`.webdevlabs.campuscommerce.R
 import `in`.webdevlabs.campuscommerce.adapters.ChatViewHolder
 import `in`.webdevlabs.campuscommerce.model.Chat
 import `in`.webdevlabs.campuscommerce.utils.FirebaseUtil
@@ -20,7 +21,8 @@ class ChatActivity : AppCompatActivity() {
     private lateinit var ruid: String
     private lateinit var suid: String
     private lateinit var pid: String
-    private var gid: Int = 0
+    private lateinit var gid: String
+    private lateinit var sname: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,18 +32,21 @@ class ChatActivity : AppCompatActivity() {
             ruid = bundle.getString("uid")
             pid = bundle.getString("pid")
         }
+        val sp = this.getSharedPreferences("sp",0)
+        sname = sp.getString("username","")
+
         suid = FirebaseAuth.getInstance().currentUser!!.uid
 
-        FirebaseUtil.addGroupToDatabase(suid, ruid, pid)
+        FirebaseUtil.addGroupToDatabase(suid, ruid, pid,sname)
 
-        gid = ruid.hashCode() + suid.hashCode() + pid.hashCode()
+        gid = (ruid.hashCode() + suid.hashCode() + pid.hashCode()).toString()
         val database: FirebaseDatabase = FirebaseDatabase.getInstance()
         val mChatReference = database.reference
 
         val rView = findViewById<RecyclerView>(R.id.chatRecyclerView)
         val recyclerAdapter = object : FirebaseRecyclerAdapter<Chat, ChatViewHolder>(
                 Chat::class.java, R.layout.item_chat,
-                ChatViewHolder::class.java, mChatReference.child("groups").child(gid.toString())) {
+                ChatViewHolder::class.java, mChatReference.child("groups").child(gid).child("chats")) {
             override fun populateViewHolder(viewHolder: ChatViewHolder?, chat: Chat?, position: Int) {
                 if (chat != null) {
                     viewHolder?.bindPost(chat)

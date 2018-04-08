@@ -18,8 +18,6 @@ import com.google.firebase.database.FirebaseDatabase
 class MyChats : Fragment() {
 
     lateinit var uid: String
-    //    lateinit var ruid:String
-//    lateinit var pid:String
     lateinit var text: TextView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
