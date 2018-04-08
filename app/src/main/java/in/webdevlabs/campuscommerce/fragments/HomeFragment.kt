@@ -4,6 +4,7 @@ import `in`.webdevlabs.campuscommerce.R
 import `in`.webdevlabs.campuscommerce.activities.NewPostActivity
 import `in`.webdevlabs.campuscommerce.adapters.PostViewHolder
 import `in`.webdevlabs.campuscommerce.model.Post
+import `in`.webdevlabs.campuscommerce.utils.FirebaseUtil
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -44,6 +45,18 @@ class HomeFragment : Fragment() {
         return view
     }
 
+    private fun invalidate() {
+        if (!FirebaseUtil.isUserSignedIn()) {
+            my_recycler_view.visibility = View.GONE
+            fab.visibility = View.GONE
+            get_started.visibility = View.VISIBLE
+        } else {
+            my_recycler_view.visibility = View.VISIBLE
+            fab.visibility = View.VISIBLE
+            get_started.visibility = View.GONE
+        }
+    }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
@@ -51,5 +64,7 @@ class HomeFragment : Fragment() {
             val intent = Intent(activity, NewPostActivity::class.java)
             startActivity(intent)
         }
+
+        invalidate()
     }
 }

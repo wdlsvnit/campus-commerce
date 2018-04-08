@@ -8,7 +8,6 @@ import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.TextView
-import com.google.firebase.auth.FirebaseAuth
 
 /**
  * Created by yolo on 8/4/18.

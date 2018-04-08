@@ -156,6 +156,7 @@ class MainActivity : AppCompatActivity() {
             }
             Constants.ITEM_SIGN_OUT -> {
                 signOutUser()
+                replaceFragment(HomeFragment())
             }
         }
 
@@ -179,6 +180,7 @@ class MainActivity : AppCompatActivity() {
 
                 updateUIAfterSignIn()
                 FirebaseUtil.addCurrentUserToFirebaseDatabase()
+                replaceFragment(HomeFragment())
                 return
             } else {
                 //User pressed back button
