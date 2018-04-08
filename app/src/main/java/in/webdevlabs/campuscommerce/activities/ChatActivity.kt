@@ -27,6 +27,7 @@ class ChatActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
+
         val bundle = intent.extras
         if (bundle != null) {
             ruid = bundle.getString("uid")
@@ -57,8 +58,15 @@ class ChatActivity : AppCompatActivity() {
         rView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         rView.adapter = recyclerAdapter
 
+        setupToolbar()
         setup()
+    }
 
+    private fun setupToolbar() {
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar
     }
 
     private fun setup() {

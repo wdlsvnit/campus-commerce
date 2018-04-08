@@ -18,7 +18,7 @@ class ChatViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     var msg: TextView = itemView.findViewById(R.id.msg) as TextView
 
     fun bindPost(chat: Chat) {
-        this.msg.text=chat.msg
+        this.msg.text = chat.msg
 
         val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX", Locale.getDefault())
         chat.time?.run {

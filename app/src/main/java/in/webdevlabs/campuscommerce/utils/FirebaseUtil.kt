@@ -12,6 +12,10 @@ object FirebaseUtil {
     private val database: FirebaseDatabase = FirebaseDatabase.getInstance()
     //private var pids = ArrayList<String>()
 
+    fun isUserSignedIn(): Boolean {
+        return firebaseAuth.currentUser != null
+    }
+
     fun addCurrentUserToFirebaseDatabase() {
         val databaseRef: DatabaseReference = database.getReference("users")
 
@@ -43,10 +47,6 @@ object FirebaseUtil {
         postRef.child("type").setValue(post.type)
         postRef.child("pid").setValue(key)
         postRef.child("tag").setValue(post.tag)
-
-        val userPostRef = database.getReference("users").child(firebaseAuth.currentUser?.uid).child("posts")
-        //userPostRef.child("posts").setValue(pids)
-        userPostRef.child(key).setValue(true)
     }
 
     fun addGroupToDatabase(suid: String, ruid: String, pid: String) {
@@ -59,7 +59,7 @@ object FirebaseUtil {
 //        groupRef.child("sname").setValue(sname)
     }
 
-    fun addChatToFirebaseDatabase(gid:String, chat: Chat) {
+    fun addChatToFirebaseDatabase(gid: String, chat: Chat) {
         val chatRef: DatabaseReference = database.getReference("groups").child(gid).child("chats").push()
         chatRef.child("msg").setValue(chat.msg)
         chatRef.child("time").setValue(chat.time)
