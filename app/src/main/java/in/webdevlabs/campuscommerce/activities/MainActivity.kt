@@ -3,6 +3,7 @@ package `in`.webdevlabs.campuscommerce.activities
 import `in`.webdevlabs.campuscommerce.R
 import `in`.webdevlabs.campuscommerce.fragments.HomeFragment
 import `in`.webdevlabs.campuscommerce.fragments.MyChats
+import `in`.webdevlabs.campuscommerce.fragments.SubscriptionFragment
 import `in`.webdevlabs.campuscommerce.utils.Constants
 import `in`.webdevlabs.campuscommerce.utils.FirebaseUtil
 import android.app.Activity
@@ -84,7 +85,7 @@ class MainActivity : AppCompatActivity() {
 
         itemHome = PrimaryDrawerItem().withIdentifier(Constants.ITEM_HOME.toLong()).withName(R.string.menu_item_home).withIcon(resources.getDrawable(R.drawable.ic_home_black_24dp))
         itemChats = PrimaryDrawerItem().withIdentifier(Constants.ITEM_CHATS.toLong()).withName(R.string.menu_item_chats).withIcon(resources.getDrawable(R.drawable.ic_chat_bubble_outline_black_24dp))
-        itemSubscriptions = PrimaryDrawerItem().withIdentifier(Constants.ITEM_SUB.toLong()).withName(R.string.menu_item_chats).withIcon(resources.getDrawable(R.drawable.ic_notifications_black_24dp))
+        itemSubscriptions = PrimaryDrawerItem().withIdentifier(Constants.ITEM_SUB.toLong()).withName(R.string.menu_item_subs).withIcon(resources.getDrawable(R.drawable.ic_notifications_black_24dp))
     }
 
     private fun setupProfileDrawer() {
@@ -156,7 +157,7 @@ class MainActivity : AppCompatActivity() {
                 replaceFragment(MyChats())
             }
             Constants.ITEM_SUB -> {
-                replaceFragment(MyChats())
+                replaceFragment(SubscriptionFragment())
             }
             Constants.ITEM_SIGN_OUT -> {
                 signOutUser()
