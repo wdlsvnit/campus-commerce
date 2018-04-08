@@ -28,10 +28,10 @@ class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun bindPost(post: Post) {
         this.name.text = post.name
-        this.price.text = post.price.toString()
+        this.price.text = "RS "+post.price.toString()
 
         post.tag?.let {
-            tag.text = it
+            tag.text ="Category :"+it
         }
 
         this.type.text = when (post.type) {
