@@ -28,10 +28,10 @@ class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun bindPost(post: Post) {
         this.name.text = post.name
-        this.price.text = "RS "+post.price.toString()
+        this.price.text = "RS " + post.price.toString()
 
         post.tag?.let {
-            tag.text ="Category :"+it
+            tag.text = "Category :" + it
         }
 
         this.type.text = when (post.type) {
@@ -40,7 +40,7 @@ class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             else -> ""
         }
 
-        val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX", Locale.getDefault())
+        val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", Locale.getDefault())
         post.time?.run {
             time.text = DateUtils.getRelativeTimeSpanString(sdf.parse(post.time).time, System.currentTimeMillis(), DateUtils.MINUTE_IN_MILLIS)
         }

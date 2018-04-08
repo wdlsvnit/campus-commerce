@@ -10,14 +10,18 @@
         android:id="@+id/card_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        card_view:cardBackgroundColor="#DCDCDC"
         card_view:cardCornerRadius="10dp"
         card_view:cardElevation="5dp"
-        card_view:cardBackgroundColor="#DCDCDC"
         card_view:cardUseCompatPadding="true">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingBottom="4dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="4dp">
 
             <RelativeLayout
                 android:id="@+id/name_time"
@@ -31,8 +35,8 @@
                     android:layout_alignParentLeft="true"
                     android:layout_margin="5dp"
                     android:text="Name"
-                    android:textSize="30dp"
                     android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textSize="30dp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -54,8 +58,8 @@
                 android:layout_below="@+id/name_time"
                 android:layout_margin="5dp"
                 android:text="Price"
-                android:textSize="15dp"
                 android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="15dp"
                 android:textStyle="italic" />
 
             <ImageView
@@ -70,8 +74,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/price"
-                android:orientation="vertical"
-                android:layout_margin="5dp">
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/tag"
@@ -79,8 +82,8 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:text="tag"
-                    android:textSize="15dp"
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textSize="15dp" />
 
                 <TextView
                     android:id="@+id/type"
@@ -88,8 +91,8 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:text="Sell"
-                    android:textSize="15dp"
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textSize="15dp" />
 
             </LinearLayout>
 

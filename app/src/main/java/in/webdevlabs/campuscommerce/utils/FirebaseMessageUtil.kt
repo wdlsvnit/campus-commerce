@@ -27,14 +27,23 @@ object FirebaseMessageUtil {
         val queue = Volley.newRequestQueue(App.applicationContext())
         val url = "http://www.google.com"
 
-        val stringRequest = StringRequest(Request.Method.POST, url,
+        val stringRequest = object : StringRequest(Request.Method.POST, url,
                 Response.Listener<String> { response ->
                     Toast.makeText(App.applicationContext(), "Response is: ${response.substring(0, 500)}", Toast.LENGTH_SHORT).show()
                     // Display the first 500 characters of the response string.
                 },
                 Response.ErrorListener {
                     Toast.makeText(App.applicationContext(), "That didn't work!", Toast.LENGTH_SHORT).show()
-                })
+                }) {
+
+            override fun getHeaders(): MutableMap<String, String> {
+                val params = HashMap<String, String>()
+                params["Content-Type"] = "application/json"
+                params["Authorization"] = "api-key"
+
+                return params
+            }
+        }
 
 // Add the request to the RequestQueue.
         queue.add(stringRequest)

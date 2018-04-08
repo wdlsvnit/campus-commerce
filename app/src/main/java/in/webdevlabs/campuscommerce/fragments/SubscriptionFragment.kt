@@ -1,9 +1,8 @@
 package `in`.webdevlabs.campuscommerce.fragments
 
 import `in`.webdevlabs.campuscommerce.R
-import `in`.webdevlabs.campuscommerce.adapters.PostViewHolder
 import `in`.webdevlabs.campuscommerce.adapters.StringViewHolder
-import `in`.webdevlabs.campuscommerce.model.Post
+import `in`.webdevlabs.campuscommerce.utils.FirebaseMessageUtil
 import `in`.webdevlabs.campuscommerce.utils.FirebaseUtil
 import android.app.AlertDialog
 import android.content.DialogInterface
@@ -12,13 +11,11 @@ import android.support.design.widget.FloatingActionButton
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
-import com.firebase.ui.FirebaseRecyclerAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.fragment_subscription.*
@@ -30,7 +27,7 @@ class SubscriptionFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_subscription, container, false)
         val fab = view.findViewById<FloatingActionButton>(R.id.fab) as FloatingActionButton
-        fab.setOnClickListener(object :View.OnClickListener{
+        fab.setOnClickListener(object : View.OnClickListener {
             override fun onClick(p0: View?) {
                 showDialog()
             }
@@ -49,7 +46,7 @@ class SubscriptionFragment : Fragment() {
                 override fun populateViewHolder(viewHolder: StringViewHolder?, model: String?, position: Int) {
                     if (model != null) {
                         viewHolder?.bindPost(model)
-                        Toast.makeText(context,model,Toast.LENGTH_LONG)
+                        Toast.makeText(context, model, Toast.LENGTH_LONG)
                     }
                 }
             }
@@ -88,7 +85,9 @@ class SubscriptionFragment : Fragment() {
         dialogBuilder.setTitle("Tag")
         dialogBuilder.setMessage("Enter Tag Below")
         dialogBuilder.setPositiveButton("Ok", DialogInterface.OnClickListener { dialog, whichButton ->
-            FirebaseUtil.addTagToFirebaseDatabase(editText.text.toString(),uid)
+            FirebaseUtil.addTagToFirebaseDatabase(editText.text.toString(), uid)
+            FirebaseMessageUtil.subscribeToTag(editText.text.toString())
+            Toast.makeText(context, editText.text.toString() + " Subscribed", Toast.LENGTH_SHORT).show()
         })
         dialogBuilder.setNegativeButton("Cancel", DialogInterface.OnClickListener { dialog, whichButton ->
         })
