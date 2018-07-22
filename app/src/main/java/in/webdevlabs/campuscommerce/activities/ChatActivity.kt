@@ -73,7 +73,9 @@ class ChatActivity : AppCompatActivity() {
     private fun setup() {
         sendButton.setOnClickListener({
             send()
-            msgEditText.clearComposingText()
+
+            //Clears text field
+            msgEditText.setText("")
         })
         msgEditText.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
